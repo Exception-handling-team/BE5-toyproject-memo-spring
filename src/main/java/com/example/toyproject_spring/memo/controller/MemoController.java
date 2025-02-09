@@ -34,12 +34,8 @@ public class MemoController {
     public ResponseEntity<Memo> write(@RequestBody Memo memo) {
         Member member = rq.getAuthenticatedActor();
         memo.setMember(member);
-        try {
-            Memo savedMemo = memoService.write(memo);
-            return ResponseEntity.status(201).body(savedMemo);
-        } catch (IllegalArgumentException e) {
-            return ResponseEntity.badRequest().body(null);
-        }
+        memoService.write(memo);
+        return ResponseEntity.ok(memo);
     }
 
     @DeleteMapping("/delete/{id}")

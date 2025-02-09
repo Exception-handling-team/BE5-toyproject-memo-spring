@@ -1,9 +1,8 @@
 package com.example.toyproject_spring.memo.service;
 
+import com.example.toyproject_spring.member.entity.Member;
 import com.example.toyproject_spring.memo.entity.Memo;
 import com.example.toyproject_spring.memo.repository.MemoRepository;
-import com.example.toyproject_spring.member.entity.Member;
-import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -23,11 +22,8 @@ public class MemoService {
     }
 
     public Memo write(Memo memo) {
-        try {
             return memoRepository.save(memo);
-        } catch (DataIntegrityViolationException e) {
-            throw new IllegalArgumentException("이미 같은 제목의 메모가 존재합니다.");
-        }
+
     }
 
     public void delete(Long id) {
