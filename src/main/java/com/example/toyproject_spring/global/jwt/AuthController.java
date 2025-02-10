@@ -36,4 +36,10 @@ public class AuthController {
 
         return ResponseEntity.ok(Map.of("token", token));
     }
+
+    // 사용자 등록
+    @PostMapping("/register")
+    public Member register(@RequestBody Member member) {
+        return memberService.saveUser(member);
+    }
 }

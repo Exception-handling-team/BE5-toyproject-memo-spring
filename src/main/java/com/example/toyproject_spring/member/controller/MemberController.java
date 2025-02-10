@@ -1,12 +1,10 @@
 package com.example.toyproject_spring.member.controller;
 
+import com.example.toyproject_spring.global.Rq;
 import com.example.toyproject_spring.member.entity.Member;
 import com.example.toyproject_spring.member.service.MemberService;
-import com.example.toyproject_spring.global.Rq;  // 추가된 Rq import
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/user")
@@ -21,17 +19,6 @@ public class MemberController {
         this.rq = rq;
     }
 
-    // 사용자 등록
-    @PostMapping("/register")
-    public Member register(@RequestBody Member member) {
-        return memberService.saveUser(member);
-    }
-
-    // 로그인 (사용자명으로 사용자 조회)
-    @GetMapping("/login/{username}")
-    public Optional<Member> login(@PathVariable String username) {
-        return memberService.findByUsername(username);
-    }
 
     // 인증된 사용자 정보 가져오기 (Rq 사용)
     @GetMapping("/me")

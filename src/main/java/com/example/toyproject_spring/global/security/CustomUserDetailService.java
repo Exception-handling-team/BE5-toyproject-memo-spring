@@ -23,11 +23,4 @@ public class CustomUserDetailService implements UserDetailsService {
                 .orElseThrow(() -> new UsernameNotFoundException("사용자를 찾을 수 없습니다."));
         return new User(member.getUsername(), member.getPassword(), List.of());
     }
-
-    // API 키로 사용자 찾기
-    public UserDetails loadUserByApiKey(String apiKey) throws UsernameNotFoundException {
-        Member member = memberRepository.findByApiKey(apiKey)
-                .orElseThrow(() -> new UsernameNotFoundException("API 키로 사용자를 찾을 수 없습니다."));
-        return new User(member.getUsername(), member.getPassword(), List.of());
-    }
 }

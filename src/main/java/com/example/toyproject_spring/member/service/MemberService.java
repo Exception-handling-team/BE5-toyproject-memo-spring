@@ -17,8 +17,9 @@ public class MemberService {
 
     // 사용자 저장 (비밀번호 암호화 제거)
     public Member saveUser(Member member) {
-        // 비밀번호 암호화 제거
-        // 비밀번호를 그대로 저장
+        if (member.getRole() == null) {
+            member.setRole(Member.Role.USER);
+        }
         return memberRepository.save(member);
     }
 
@@ -27,7 +28,4 @@ public class MemberService {
         return memberRepository.findByUsername(username);
     }
 
-    public Optional<Member> findByApiKey(String apiKey) {
-        return memberRepository.findByApiKey(apiKey);
-    }
 }
